@@ -95,7 +95,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/02/22/生成树与多实例生成树/index.html">
 <meta property="og:site_name" content="onezhai">
 <meta property="og:description" content="生成树的作用冗余（备份），消除环路，负载均衡生成树是二层的协议，所以是交换机之间的协议，主要通过发送BPDU来确定网络拓扑结构，BPDU（网桥协议数据单元）计算无环生成树TCNBPDU 当拓扑变化时产生，主要是为了缩短mac地址表的刷新时间BID （根桥ID）最小的为根桥，由根桥形成一棵“树”当接入的根桥ID小于原拓扑的根桥ID时，根桥产生表更功能避免局域网单点故障，网络环路，解决“广播风暴”路由">
-<meta property="og:updated_time" content="2017-02-23T05:03:50.000Z">
+<meta property="og:updated_time" content="2017-03-10T09:31:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生成树与多实例生成树">
 <meta name="twitter:description" content="生成树的作用冗余（备份），消除环路，负载均衡生成树是二层的协议，所以是交换机之间的协议，主要通过发送BPDU来确定网络拓扑结构，BPDU（网桥协议数据单元）计算无环生成树TCNBPDU 当拓扑变化时产生，主要是为了缩短mac地址表的刷新时间BID （根桥ID）最小的为根桥，由根桥形成一棵“树”当接入的根桥ID小于原拓扑的根桥ID时，根桥产生表更功能避免局域网单点故障，网络环路，解决“广播风暴”路由">
@@ -329,7 +329,6 @@
         <p>生成树的作用<br>冗余（备份），消除环路，负载均衡<br>生成树是二层的协议，所以是交换机之间的协议，主要通过发送BPDU来确定网络拓扑结构，<br>BPDU（网桥协议数据单元）计算无环生成树<br>TCNBPDU 当拓扑变化时产生，主要是为了缩短mac地址表的刷新时间<br>BID （根桥ID）最小的为根桥，由根桥形成一棵“树”<br>当接入的根桥ID小于原拓扑的根桥ID时，根桥产生表更<br>功能<br>避免局域网单点故障，网络环路，解决“广播风暴”<br>路由备份，当一个交换产生故障时，环路消失，路由自动切换到另一台设备。<br>负载均衡，通过设置vlan通过的优先级，来指定固定的vlan走不通的交换设备出去，进行负载均衡，当一台交换故障，环路消失，自动切换，保证网络的连通性。<br>状态<br>BLOCKING阻塞状态 ，这时是没有“树”的。<br>Listening 侦听状态 这是互发BPDU 状态<br>learning 学习状态 这是是互相学习vlan状态，选出根<br>forwarding 建立成功<br>根桥的选举<br>比较桥ID ：优先级+mac （优先级默认都是32768+vlanid），端口默认优先级是128<br>根端口：每一个非根桥上都有一个根端口<br>比较到根桥的开销，开销小的为优，开销相同比较对端端口ID</p>
 <p>STP的几种协议<br>基于vlan的有<br>pvst 和rapid-pvst<br>生成树和快速生成树</p>
 <p>生成树的收敛时间大约为（30s~50s）<br>快速生成树的收敛时间为（3s）<br>MST 多实例生成树<br>多用于vlan过多的场合，把具备相同vlan特征的pvst（生成树）捆绑成一条减少vlan实例，减少资源消耗。<br>VTP vlan学习协议 ，同步vlan<br>有三个模式， server  transparent（透明模式，不发送vlan，也不学习vlan） client（客户端模式，向server学习vlan）<br>但是vlan的学习，并不是以这个为根据，而是以vtp 的修订号为依据（修订号即vlan同步的次数，没同步一次，vtp的修订号加一），修订号低的向高的学习vlan，学习的同时修订号改变。假设有一台新的交换机加入原有拓扑，修订号为高，原设备为旧设备修订号低，那么就会造成原有vlan的变化，造成无法想象的后果。<br>STP的优化<br>优化包括，快速端口，BPDU保护，BPDU过滤<br>portfast 快速端口，成功后，使得端口跳过侦听状态直接建立，端口在建立后，收到BPDU则这个特性消失<br>BPDU保护，主要防治私自接人交换机，导致网络拓扑改变，当接入交换机时，由于是二层设备，默认就开始发送BPDP来发现并划分拓扑。当开启BPDU保护时接收到或者发送BPDU时都会使得端口down<br>BPDU过滤，当接收到BPDU时，自动丢弃，不进行，BPDU的交换，确认拓扑结构<br>STP只能在access端口下配置，无法在trunk下配置。</p>
- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="110" src="//music.163.com/outchain/player?type=0&id=544327206&auto=0&height=90"></iframe>
 
       
     </div>
